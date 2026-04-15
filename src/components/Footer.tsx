@@ -2,21 +2,12 @@ export function Footer() {
   return (
     <footer className="py-16 px-6 border-t border-border">
       <div className="max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
           <div>
             <span className="text-sm tracking-[0.2em] font-light">LIVENGY</span>
             <p className="text-muted-foreground text-xs mt-2 leading-relaxed">
               Precision longevity protocols personalized to your biology. Reverse aging. Look good. Feel extraordinary.
             </p>
-          </div>
-          <div>
-            <h4 className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-3">Contact</h4>
-            <a
-              href="mailto:contact@livengy.com"
-              className="text-sm text-foreground/80 hover:text-primary transition-colors"
-            >
-              contact@livengy.com
-            </a>
           </div>
           <div>
             <h4 className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-3">Headquarters</h4>
