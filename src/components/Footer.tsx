@@ -6,7 +6,9 @@ export function Footer() {
           <div>
             <span className="text-sm tracking-[0.2em] font-light">LIVENGY</span>
             <p className="text-muted-foreground text-xs mt-2 leading-relaxed">
-              Precision longevity protocols personalized to your biology. Reverse aging. Look good. Feel extraordinary.
+              Precision longevity protocols personalized to your biology.
+              <br />
+              Reverse aging. Look good. Feel extraordinary.
             </p>
           </div>
           <div>
