@@ -3,11 +3,30 @@ import { useState } from "react";
 export function WaitlistSection() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
+    if (!email) return;
+    setSubmitting(true);
+    setError(null);
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/contact@livengy.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          email,
+          _subject: "New Livengy waitlist signup",
+          _template: "table",
+        }),
+      });
+      if (!res.ok) throw new Error("request failed");
       setSubmitted(true);
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -35,15 +54,20 @@ export function WaitlistSection() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="your@email.com"
-              className="flex-1 px-5 py-3.5 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all"
+              disabled={submitting}
+              className="flex-1 px-5 py-3.5 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all disabled:opacity-60"
             />
             <button
               type="submit"
-              className="px-8 py-3.5 rounded-lg gradient-glow text-primary-foreground text-sm font-medium tracking-wide hover:opacity-90 transition-opacity"
+              disabled={submitting}
+              className="px-8 py-3.5 rounded-lg gradient-glow text-primary-foreground text-sm font-medium tracking-wide hover:opacity-90 transition-opacity disabled:opacity-60"
             >
-              Get Early Access
+              {submitting ? "Sending..." : "Get Early Access"}
             </button>
           </form>
+        )}
+        {error && (
+          <p className="mt-4 text-sm text-destructive">{error}</p>
         )}
       </div>
     </section>
