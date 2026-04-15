@@ -12,7 +12,7 @@ export function WaitlistSection() {
     setSubmitting(true);
     setError(null);
     try {
-      const res = await fetch("https://formsubmit.co/ajax/contact@livengy.com", {
+      const res = await fetch("https://formsubmit.co/ajax/8c9830165ded599890441f7ff409d073", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
